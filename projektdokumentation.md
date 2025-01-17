@@ -63,7 +63,7 @@ Total: 900 / 20 Lektionen
 
 ## 3 Entscheiden
 
-Ich habe mich dazu entschieden die Meilensteinen ein wenig anzupassen, da ich gerne eine Funktion im Backend und Frontend fertigstellen möchte, bevor ich eine neue Beginne, dies erleichtert mir die Planung und den Überblick.
+Ich habe mich dazu entschieden die Meilensteine ein wenig anzupassen, da ich gerne immer ein Arbeitspaket im Backend und Frontend abschliessen möchte, bevor ich ein neues Arbeitspaket beginne. Dies verfolgt das Ziel mir eine verbesserte Übersicht zu verschaffen. Also ist der neuen Meilenstein 2, dass ich mit den Konten Funktionen an Tag 4 fertig sein möchte und der neue Meilenstein 3 ist, dass ich an Tag 6 mit den restlichen Arbeitspaketen fertig sein möchte.
 
 ## 4 Realisieren
 
