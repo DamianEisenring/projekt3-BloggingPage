@@ -45,8 +45,6 @@ export const getProfile = async () => {
 };
 
   
-
-
 // Registrierung
 export const register = async (email, password) => {
   try {
@@ -55,4 +53,39 @@ export const register = async (email, password) => {
   } catch (error) {
     throw error.response ? error.response.data : "Serverfehler";
   }
+};
+
+export const getPosts = async () => {
+  const token = localStorage.getItem("token");
+  const response = await axios.get("http://localhost:8081/posts", {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return response.data;
+};
+
+export const createPost = async (title, text) => {
+  const token = localStorage.getItem("token");
+  const response = await axios.post(
+    "http://localhost:8081/posts",
+    { title, text },
+    { headers: { Authorization: `Bearer ${token}` } }
+  );
+  return response.data;
+};
+
+export const deletePost = async (id) => {
+  const token = localStorage.getItem("token");
+  await axios.delete(`http://localhost:8081/posts/${id}`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+};
+
+export const likePost = async (id) => {
+  const token = localStorage.getItem("token");
+  const response = await axios.post(
+    `http://localhost:8081/posts/${id}/like`,
+    {},
+    { headers: { Authorization: `Bearer ${token}` } }
+  );
+  return response.data;
 };
