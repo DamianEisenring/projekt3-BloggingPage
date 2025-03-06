@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getPosts, createPost, deletePost, likePost, getProfile } from "../api";
+import "./Posts.css";
 
 const Posts = () => {
   const [posts, setPosts] = useState([]);
@@ -8,6 +9,9 @@ const Posts = () => {
   const [userEmail, setUserEmail] = useState("");
   const [likedPosts, setLikedPosts] = useState(new Set());
   const [editingPost, setEditingPost] = useState(null);
+  const [editingProfile, setEditingProfile] = useState(false);
+  const [newEmail, setNewEmail] = useState("");
+  const [newPassword, setNewPassword] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -59,25 +63,24 @@ const Posts = () => {
     }
   };
 
- const handleEdit = (post) => {
-  console.log("Post-Daten:", post);  // Debugging
-  console.log("Eingeloggter User:", userEmail); // Debugging
+  const handleEdit = (post) => {
+    console.log("Post-Daten:", post); // Debugging
+    console.log("Eingeloggter User:", userEmail); // Debugging
 
-  if (!post.createdBy) {
-    alert("Fehler: Post-Daten sind unvollständig.");
-    return;
-  }
+    if (!post.createdBy) {
+      alert("Fehler: Post-Daten sind unvollständig.");
+      return;
+    }
 
-  if (post.createdBy !== userEmail) {
-    alert("Fehler: Du kannst nur deine eigenen Beiträge bearbeiten!");
-    return;
-  }
+    if (post.createdBy !== userEmail) {
+      alert("Fehler: Du kannst nur deine eigenen Beiträge bearbeiten!");
+      return;
+    }
 
-  setEditingPost(post);
-  setTitle(post.title);
-  setText(post.text);
-};
-
+    setEditingPost(post);
+    setTitle(post.title);
+    setText(post.text);
+  };
 
   const handleUpdatePost = async (e) => {
     e.preventDefault();
@@ -155,48 +158,103 @@ const Posts = () => {
       console.error("Fehler beim Liken/Entliken:", err);
     }
   };
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    window.location.href = "/login"; // Falls du eine Login-Seite hast
+  };
+
+  const handleUpdateProfile = async (e) => {
+    e.preventDefault();
+    try {
+      const token = localStorage.getItem("token");
+      const response = await fetch("http://localhost:8081/auth/updateprofile", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+        body: JSON.stringify({ newEmail, newPassword }),
+      });
+  
+      if (response.ok) {
+        alert("Profil aktualisiert! Bitte neu einloggen.");
+        localStorage.removeItem("token");  // Token entfernen
+        window.location.href = "/login";  // Zum Login umleiten
+      } else {
+        alert("Fehler beim Aktualisieren des Profils.");
+      }
+    } catch (err) {
+      console.error("Fehler beim Bearbeiten des Profils:", err);
+    }
+  };
+  
 
   return (
-    <div>
-      <h2>Beiträge</h2>
-      <form onSubmit={editingPost ? handleUpdatePost : handleCreatePost}>
-  <input
-    type="text"
-    placeholder="Titel"
-    value={title}
-    onChange={(e) => setTitle(e.target.value)}
-    required
-  />
-  <textarea
-    placeholder="Text"
-    value={text}
-    onChange={(e) => setText(e.target.value)}
-    required
-  ></textarea>
-  <button type="submit">{editingPost ? "Änderungen speichern" : "Beitrag erstellen"}</button>
-  {editingPost && <button onClick={() => setEditingPost(null)}>Abbrechen</button>}
-</form>
-
-
-      {posts.map((post) => (
-        <div key={post.id}>
-          <h3>{post.title}</h3>
-          <p>{post.text}</p>
-          <p>{post.createdBy}</p>
-          <button onClick={() => handleLike(post.id)}>
-            {likedPosts.has(post.id) ? "❤️ Unlike" : "🤍 Like"} (
-            {post.likes.length})
-          </button>
-          {post.createdBy === userEmail && (
-  <div>
-    <button onClick={() => handleEdit(post)}>Bearbeiten</button>
-    <button onClick={() => handleDelete(post.id)}>Löschen</button>
+    <div className="container">
+    <button onClick={() => setEditingProfile(!editingProfile)}>
+      Profil bearbeiten
+    </button>
+    <button onClick={handleLogout}>Logout</button>
+  
+    {editingProfile && (
+      <form onSubmit={handleUpdateProfile} className="profile-edit">
+        <input
+          type="email"
+          placeholder="Neue E-Mail"
+          value={newEmail}
+          onChange={(e) => setNewEmail(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="Neues Passwort"
+          value={newPassword}
+          onChange={(e) => setNewPassword(e.target.value)}
+        />
+        <button type="submit">Speichern</button>
+      </form>
+    )}
+  
+    <h2>Beiträge</h2>
+    <form onSubmit={editingPost ? handleUpdatePost : handleCreatePost}>
+      <input
+        type="text"
+        placeholder="Titel"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+        required
+      />
+      <textarea
+        placeholder="Text"
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        required
+      ></textarea>
+      <button type="submit">
+        {editingPost ? "Änderungen speichern" : "Beitrag erstellen"}
+      </button>
+      {editingPost && (
+        <button onClick={() => setEditingPost(null)}>Abbrechen</button>
+      )}
+    </form>
+  
+    {posts.map((post) => (
+      <div key={post.id} className="post">
+        <h3>{post.title}</h3>
+        <p>{post.text}</p>
+        <p>Erstellt von: {post.createdBy}</p>
+        <button className="like-button" onClick={() => handleLike(post.id)}>
+          {likedPosts.has(post.id) ? "❤️ Unlike" : "🤍 Like"} ({post.likes.length})
+        </button>
+        {post.createdBy === userEmail && (
+          <div>
+            <button onClick={() => handleEdit(post)}>Bearbeiten</button>
+            <button onClick={() => handleDelete(post.id)}>Löschen</button>
+          </div>
+        )}
+      </div>
+    ))}
   </div>
-)}
-
-        </div>
-      ))}
-    </div>
+  
   );
 };
 
