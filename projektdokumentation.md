@@ -55,7 +55,7 @@ Eine Blogging-Seite mit React-Frontend und Java-Backend, die es Nutzern ermögli
 | 5.A  | 28.02.2024    | Damian Eisenring    | Entwicklung der Beitragsfunktion (Erstellen).     | 100           |
 | 6.A  | 28.02.2024    | Damian Eisenring    | Entwicklung der Beitragsfunktion (Bearbeiten).    | 100           |
 | 7.A  | 28.02.2024    | Damian Eisenring    | Entwicklung der Beitragsfunktion (Löschen).       | 100           |
-| 8.A  | 28.02.2024    | Damian Eisenring    | Entwicklung der Anzeige von Beiträgen mit Titel, Text und Bildern. | 100 |
+| 8.A  | 28.02.2024    | Damian Eisenring    | Entwicklung der Anzeige von Beiträgen mit Titel und Text  | 100 |
 | 9.A | 28.02.2024    | Damian Eisenring    | Entwicklung der Like-Funktion für Beiträge.       | 100           |
 
 Total: 900 / 20 Lektionen 
