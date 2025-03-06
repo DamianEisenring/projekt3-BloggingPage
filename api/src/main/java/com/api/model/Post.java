@@ -1,6 +1,8 @@
 package com.api.model;
 
 import jakarta.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "posts")
@@ -13,18 +15,26 @@ public class Post {
     private String title;
     private String text;
     private String author;
-    private int likes = 0;
+
     @Column(nullable = false)
     private String createdBy;
 
-    public String getCreatedBy() {
-        return createdBy;
+    @ElementCollection
+    @CollectionTable(name = "post_likes", joinColumns = @JoinColumn(name = "post_id"))
+    @Column(name = "liked_by")
+    private Set<String> likes = new HashSet<>();
+
+    public Post() {
+        this.likes = new HashSet<>(); // Sicherstellen, dass likes niemals null ist
     }
 
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
+    public Set<String> getLikes() {
+        return likes;
     }
 
+    public void setLikes(Set<String> likes) {
+        this.likes = likes;
+    }
 
     public Long getId() {
         return id;
@@ -54,11 +64,11 @@ public class Post {
         this.author = author;
     }
 
-    public int getLikes() {
-        return likes;
+    public String getCreatedBy() {
+        return createdBy;
     }
 
-    public void setLikes(int likes) {
-        this.likes = likes;
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
     }
 }

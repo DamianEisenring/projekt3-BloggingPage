@@ -58,6 +58,6 @@ public class AuthController {
         String token = authHeader.substring(7);
         String email = jwtUtil.extractUsername(token);
 
-        return ResponseEntity.ok(Map.of("message", "Hallo " + email, "token", token));
+        return ResponseEntity.ok(Map.of("email", email, "token", token));
     }
 }
