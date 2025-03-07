@@ -35,10 +35,10 @@ Eine Blogging-Seite mit React-Frontend und Java-Backend, die es Nutzern ermögli
 | 2.2  | Nutzer gibt falsche Zugangsdaten ein.  | Anmeldung mit ungültigen Daten. | Fehlermeldung: "Ungültige Zugangsdaten".                   |
 | 3.1  | Nutzer ist eingeloggt.                 | Abmeldung über die Oberfläche.  | Nutzer wird abgemeldet und zur Startseite weitergeleitet.  |
 | 4.1  | Nutzer hat bereits ein Profil erstellt. | Änderungen an den Profildaten.  | Änderungen werden gespeichert und angezeigt.              |
-| 5.1  | Nutzer ist eingeloggt.                 | Eingabe von Titel, Text und Bild für einen Beitrag. | Beitrag wird erstellt und ist in der Liste sichtbar.       |
+| 5.1  | Nutzer ist eingeloggt.                 | Eingabe von Titel und Text für einen Beitrag. | Beitrag wird erstellt und ist in der Liste sichtbar.       |
 | 6.1  | Beitrag existiert bereits.             | Bearbeitung von Titel oder Text. | Änderungen werden gespeichert und aktualisiert angezeigt. |
 | 7.1  | Beitrag existiert bereits.             | Löschbefehl für den Beitrag.    | Beitrag wird gelöscht und aus der Liste entfernt.          |
-| 8.1  | Nutzer erstellt einen neuen Beitrag.   | Eingabe von Titel, Text und Bild. | Beitrag wird vollständig mit Titel, Text und Bild angezeigt. |
+| 8.1  | Nutzer erstellt einen neuen Beitrag.   | Eingabe von Titel und Text. | Beitrag wird vollständig mit Titel, Text und Bild angezeigt. |
 | 9.1 | Ein Beitrag ist sichtbar. | Klick auf die Like-Schaltfläche. | Der Like-Status wird gespeichert und die Anzahl der Likes erhöht. |
 
 
@@ -69,10 +69,17 @@ Ich habe mich dazu entschieden die Meilensteine ein wenig anzupassen, da ich ger
 
 | AP-№ | Datum | Zuständig | geplante Zeit | tatsächliche Zeit |
 | ---- | ----- | --------- | ------------- | ----------------- |
-| 1.A  |       |           |               |                   |
+| 1.A  |24.01.2025       |   Damian Eisenring        |       100        |    150                 |
+| 2.A  | 24.01.2025      |   Damian Eisenring        |        100       |     150              |
+| 3.A  |  14.02.2025     |   Damian Eisenring          |       100        |      5             |
+| 4.A  |   14.02.2025    |      Damian Eisenring       |      100         |       100            |
+| 5.A  |   21.02.2025    |     Damian Eisenring        |     100         |        100           |
+| 6.A  |   21.02.2025    |      Damian Eisenring       |      100         |       100            |
+| 7.A  | 28.02.2025      |     Damian Eisenring        |      100         |       100            |
+| 8.A  |  28.02.2025     |      Damian Eisenring       |      100         |       100            |
+| 9.A  |   28.02.2025    |      Damian Eisenring       |       100        |       100            |
 | ...  |       |           |               |                   |
 
-✍️ Tragen Sie jedes Mal, wenn Sie ein Arbeitspaket abschließen, hier ein, wie lang Sie effektiv dafür hatten.
 
 ## 5 Kontrollieren
 
@@ -80,20 +87,17 @@ Ich habe mich dazu entschieden die Meilensteine ein wenig anzupassen, da ich ger
 
 | TC-№ | Datum | Resultat | Tester |
 | ---- | ----- | -------- | ------ |
-| 1.1  |       |          |        |
+| 1.1  | 07.03.2025      |    Ok      |  Damian Eisenring        |
+| 2.1  | 07.03.2025      |     Ok     |  Damian Eisenring        |
+| 2.2  | 07.03.2025      |    Ok      |  Damian Eisenring        |
+| 3.1  | 07.03.2025      |   Ok       |  Damian Eisenring        |
+| 4.1  | 07.03.2025      |    Ok      |  Damian Eisenring        |
+| 5.1  | 07.03.2025      |   Ok       |  Damian Eisenring        |
+| 6.1  | 07.03.2025      |    Ok      |  Damian Eisenring        |
+| 7.1  | 07.03.2025      |   Ok       |  Damian Eisenring        |
+| 8.1  | 07.03.2025      |  Ok        |  Damian Eisenring        |
+| 9.1  | 07.03.2025      |     Ok     |  Damian Eisenring        |
 | ...  |       |          |        |
 
-✍️ Vergessen Sie nicht, ein Fazit hinzuzufügen, welches das Test-Ergebnis einordnet.
-
-### 5.2 Exploratives Testen
-
-| BR-№ | Ausgangslage | Eingabe | Erwartete Ausgabe | Tatsächliche Ausgabe |
-| ---- | ------------ | ------- | ----------------- | -------------------- |
-| I    |              |         |                   |                      |
-| ...  |              |         |                   |                      |
-
-✍️ Verwenden Sie römische Ziffern für Ihre Bug Reports, also I, II, III, IV etc.
-
-## 6 Auswerten
-
-✍️ Fügen Sie hier eine Verknüpfung zu Ihrem Lern-Bericht ein.
+#### Testfazit
+Alle durchgeführten Testfälle wurden erfolgreich bestanden. Die erwarteten Ergebnisse traten in jedem Szenario ein, und es gab keine Abweichungen oder Fehler. Damit kann die getestete Funktionalität als stabil und einsatzbereit eingestuft werden.
