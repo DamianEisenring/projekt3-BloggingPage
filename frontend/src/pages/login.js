@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { login } from "../api";
+import "./login.css"; // Spezifisches CSS für Login
 
 const Login = () => {
   const [email, setEmail] = React.useState("");
@@ -19,7 +20,7 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <div className="login-container">
       <h2>Login</h2>
       {error && <p style={{ color: "red" }}>{error}</p>}
       <form onSubmit={handleLogin}>
@@ -39,7 +40,10 @@ const Login = () => {
         />
         <button type="submit">Login</button>
       </form>
-      <p>Kein Konto? <button onClick={() => navigate("/register")}>Registrieren</button></p>
+      <p>
+        Kein Konto?{" "}
+        <button onClick={() => navigate("/register")}>Registrieren</button>
+      </p>
     </div>
   );
 };
