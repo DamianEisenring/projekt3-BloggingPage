@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { register } from "../api";
+import "./register.css"; // Spezifisches CSS für Register
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -19,7 +20,7 @@ const Register = () => {
   };
 
   return (
-    <div>
+    <div className="register-container">
       <h2>Registrieren</h2>
       {message && <p>{message}</p>}
       <form onSubmit={handleRegister}>
